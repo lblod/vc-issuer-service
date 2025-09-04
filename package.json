@@ -1,0 +1,41 @@
+{
+  "name": "vc-issuer-service",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Service to issue verifiable credentials and peripheral logic (like issuing DIDs)",
+  "main": "app.ts",
+  "author": "redpencil.io",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.12.10",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "mu-types": "git+https://github.com/rahien/mu-types.git",
+    "prettier": "^3.0.0"
+  },
+  "scripts": {
+    "lint:js": "eslint . --cache --ext .ts",
+    "lint:js:fix": "eslint . --cache --ext .ts --fix",
+    "release": "release-it",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@digitalbazaar/data-integrity": "^2.5.0",
+    "@digitalbazaar/did-io": "^2.0.0",
+    "@digitalbazaar/did-method-jwk": "^2.0.0",
+    "@digitalbazaar/did-method-key": "^5.2.0",
+    "@digitalbazaar/did-method-web": "^1.0.1",
+    "@digitalbazaar/ecdsa-sd-2023-cryptosuite": "^3.4.1",
+    "@digitalbazaar/ed25519-signature-2020": "^5.4.0",
+    "@digitalbazaar/ed25519-verification-key-2020": "^4.2.0",
+    "@digitalbazaar/security-document-loader": "^3.0.1",
+    "@digitalbazaar/vc": "^7.2.0",
+    "@lblod/mu-auth-sudo": "^0.6.1",
+    "body-parser": "^1.19.0",
+    "express-promise-router": "^4.1.1",
+    "jsonld": "^8.3.3",
+    "jsonld-document-loader": "^2.3.0"
+  }
+}

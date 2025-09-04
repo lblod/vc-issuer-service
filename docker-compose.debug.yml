@@ -9,8 +9,8 @@ services:
       TZ: Europe/Brussels
       NODE_ENV: development
     ports:
-      - "8080:80"
-      - "9229:9229"
+      - '8081:80'
+      - '9228:9229'
     volumes:
       - ../app-decide/config/vc-issuer:/config
       - ./:/app
