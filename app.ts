@@ -19,12 +19,17 @@ app.use(
 app.use(router);
 
 const issuer = new VCIssuer();
-await issuer.setup({
-  issuerDid: process.env.ISSUER_DID as string,
-  issuerKeyId: process.env.ISSUER_KEY_ID as string,
-  publicKey: process.env.ISSUER_PUBLIC_KEY as string,
-  privateKey: process.env.ISSUER_PRIVATE_KEY as string,
-});
+issuer
+  .setup({
+    issuerDid: process.env.ISSUER_DID as string,
+    issuerKeyId: process.env.ISSUER_KEY_ID as string,
+    publicKey: process.env.ISSUER_PUBLIC_KEY as string,
+    privateKey: process.env.ISSUER_PRIVATE_KEY as string,
+  })
+  .catch(() => {
+    console.error('Error setting up issuer');
+    process.exit(1);
+  });
 
 router.get('/status', function (req, res) {
   res.send({
