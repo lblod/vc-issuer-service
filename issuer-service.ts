@@ -18,17 +18,19 @@ export class VCIssuer {
 
   async setup({
     issuerDid,
+    issuerKeyId,
     publicKey,
     privateKey,
   }: {
     issuerDid: string;
+    issuerKeyId: string;
     publicKey: string;
     privateKey: string;
   }) {
     const keyPair = await Ed25519VerificationKey2020.from({
       type: 'Ed25519VerificationKey2020',
       controller: issuerDid,
-      id: issuerDid,
+      id: issuerKeyId,
       publicKeyMultibase: publicKey,
       privateKeyMultibase: privateKey,
     });

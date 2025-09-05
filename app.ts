@@ -1,8 +1,6 @@
 import bodyParser from 'body-parser';
 import { app } from 'mu';
 
-import * as vc from '@digitalbazaar/vc';
-
 // Required to set up a suite instance with private key
 import Router from 'express-promise-router';
 import { VCIssuer } from './issuer-service';
@@ -23,6 +21,7 @@ app.use(router);
 const issuer = new VCIssuer();
 await issuer.setup({
   issuerDid: process.env.ISSUER_DID as string,
+  issuerKeyId: process.env.ISSUER_KEY_ID as string,
   publicKey: process.env.ISSUER_PUBLIC_KEY as string,
   privateKey: process.env.ISSUER_PRIVATE_KEY as string,
 });
@@ -40,7 +39,7 @@ router.post('/issue-credential', async function (req, res) {
   console.log(JSON.stringify(signedVC, null, 2));
 
   // normally you'd verify the presentation, but let's already verify the credential
-  const verificationResult = await vc.verifyCredential(signedVC);
+  const verificationResult = await issuer.verifyCredential(signedVC);
   console.log(verificationResult);
   res.send(signedVC);
 });
