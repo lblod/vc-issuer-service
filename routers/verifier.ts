@@ -66,6 +66,9 @@ export async function getVerifierRouter(verifier) {
   router.get('/authorization-request-status', async function (req, res) {
     const session = req.get('mu-session-id') as string;
     const status = await verifier.getAuthorizationRequestStatus(session);
+    if (status === 'accepted') {
+      res.header('mu-auth-allowed-groups', 'CLEAR');
+    }
     res.send({ status });
   });
 
